@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -14,16 +14,15 @@ export class SpotifyService {
   public login() {
     const headers = new HttpHeaders({
       'Content-Type': 'text/plain',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH',
     });
-    var url = `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(
-      environment.clientID
-    )}&scope=${encodeURIComponent(
-      this.scope
-    )}&redirect_uri=${encodeURIComponent(this.redirect_uri)}`;
-    return this.http.get(url, { headers: headers });
+    var url = `https://accounts.spotify.com/authorize`;
+    let params = new HttpParams();
+    params = params.append('response_type','token');
+    params = params.append('client_id', environment.clientID);
+    params = params.append('scope',this.scope);
+    params = params.append('redirect_uri', this.redirect_uri);+9847AKO#43[ params.append('showDialog', true);
+    debugger;
+    return this.http.get(url, { params: params, headers: headers });
   }
 
   public getQuery(query: string) {
