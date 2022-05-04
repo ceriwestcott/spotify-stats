@@ -10,15 +10,21 @@ export class CallBackComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    const token = JSON.parse(
-      this.route.snapshot.paramMap.get('access_token') || '{}'
-    );
-    const token_type = JSON.parse(
-      this.route.snapshot.paramMap.get('token_type') || '{}'
-    );
-    if (!token) this.router.navigateByUrl('/login');
-    localStorage.setItem('token', token);
-    localStorage.setItem('token_type', token_type);
+    debugger;
+    if (!localStorage.getItem('access_token')) {
+      this.route.fragment.subscribe((fragments) => {
+        fragments?.split('&').map((fragment) => {
+          let fragmentArray = fragment.split('=');
+          if (fragment[0] === 'expires_in') {
+            const expiry_date =
+              Number(fragment[1]) + new Date().getTime() / 1000;
+
+            localStorage.setItem('expiry_date', expiry_date.toString());
+          }
+          localStorage.setItem(fragmentArray[0], fragmentArray[1]);
+        });
+      });
+    }
     this.router.navigateByUrl('/landing');
   }
 }

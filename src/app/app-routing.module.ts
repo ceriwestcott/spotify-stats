@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'callback/:access_token', component: CallBackComponent },
+  { path: 'callback', component: CallBackComponent },
   { path: 'landing', component: LandingComponent },
 ];
 

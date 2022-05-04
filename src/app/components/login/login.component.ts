@@ -7,12 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private spotifyService: SpotifyService
-  ) {}
+  constructor(private spotifyService: SpotifyService) {}
 
   ngOnInit(): void {}
 
   login(): void {
-    this.spotifyService.login().subscribe(x => console.log(x));
+    this.spotifyService.login();
   }
 }

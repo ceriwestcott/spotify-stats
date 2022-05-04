@@ -9,6 +9,6 @@ export class LandingComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    alert(localStorage.getItem('token'));
+    alert(localStorage.getItem('access_token'));
   }
 }
