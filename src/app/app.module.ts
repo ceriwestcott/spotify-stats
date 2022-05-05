@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CallBackComponent } from './components/call-back/call-back.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LandingTestComponentComponent } from './components/landing-test-component/landing-test-component.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     CallBackComponent,
     LandingComponent,
+    LandingTestComponentComponent,
   ],
   imports: [
     BrowserModule,
