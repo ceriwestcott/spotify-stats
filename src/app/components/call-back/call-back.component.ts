@@ -11,13 +11,13 @@ export class CallBackComponent implements OnInit {
 
   ngOnInit(): void {
     debugger;
-    if (!localStorage.getItem('access_token')) {
+    if (localStorage.getItem('access_token')) {
       this.route.fragment.subscribe((fragments) => {
         fragments?.split('&').map((fragment) => {
           let fragmentArray = fragment.split('=');
           if (fragment[0] === 'expires_in') {
             const expiry_date =
-              Number(fragment[1]) + new Date().getTime() / 1000;
+              Number(fragmentArray[1]) + new Date().getTime() / 1000;
 
             localStorage.setItem('expiry_date', expiry_date.toString());
           }

@@ -26,7 +26,7 @@ export class SpotifyService {
     }
   }
 
-  private authorize(): void {
+  public authorize(): void {
 
     let params = new HttpParams();
     params = params.append('response_type', 'token');
@@ -43,8 +43,8 @@ export class SpotifyService {
   }
 
   public hasTokenExpired(): boolean {
-    const expiry_date = Number(localStorage.getItem('expiry_date'));
-    return new Date().getTime() / 1000 > expiry_date;
+    let expiry_date = Number(localStorage.getItem('expiry_date'));
+    return (new Date().getTime() / 1000) > Number(expiry_date ?? 0);
   }
 
   public getQuery(query: string) {
