@@ -1,5 +1,5 @@
 import { MatAppModule } from './mat-app/mat-app.module';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,11 @@ import { LandingComponent } from './components/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingTestComponentComponent } from './components/landing-test-component/landing-test-component.component';
 import { ProfileComponent } from './components/spotify-components/profile/profile.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SpotityTopContainerComponent } from './components/spotify-components/spotity-top-container/spotity-top-container.component';
+import { SpotityTopContentComponent } from './components/spotify-components/spotity-top-content/spotity-top-content.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +26,9 @@ import { ProfileComponent } from './components/spotify-components/profile/profil
     LandingComponent,
     LandingTestComponentComponent,
     ProfileComponent,
+    NavBarComponent,
+    SpotityTopContainerComponent,
+    SpotityTopContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +36,12 @@ import { ProfileComponent } from './components/spotify-components/profile/profil
     NgbModule,
     BrowserAnimationsModule,
     MatAppModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    FlexLayoutModule 
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { AUTHORIZE_URL, BASE_URL, CURRENT_USER_URL } from '../constants';
 import { UtilityService } from './utility.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,11 @@ export class SpotifyService {
 
   public getCurrentUserProfile()  {
     return this.getQuery(CURRENT_USER_URL);
+  }
+
+  public getTop(filters: {filter:string, subFilter:string}) : Observable<any>{
+    const query = `/me/${filters.filter}?time_range=${filters.subFilter}`;
+    return this.getQuery(query);
   }
 
   public getQuery(query: string) {

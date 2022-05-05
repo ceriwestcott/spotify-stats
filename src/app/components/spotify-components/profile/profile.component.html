@@ -1,1 +1,12 @@
-<mat-card></mat-card>
+<mat-card class="example-card" style="width: 25%; height: 25%;">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{user?.display_name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{user?.images?.[0]?.url}}" alt="Photo of a Shiba Inu">
+    <mat-card-actions>
+    <a href="{{user?.external_urls?.spotify}}">
+        <button mat-button>GO TO PROFILE</button>
+    </a>
+    </mat-card-actions>
+  </mat-card>
