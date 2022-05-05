@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { AUTHORIZE_URL, BASE_URL, CURRENT_USER_URL } from '../constants';
+import { UtilityService } from './utility.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +15,12 @@ export class SpotifyService {
   common_url: string = 'https://api.spotify.com/v1/';
   constructor(
     private http: HttpClient,
-    @Inject(DOCUMENT) private document: Document,
-    private router: Router
+    private router: Router,
+    private utilityService: UtilityService
   ) {}
 
   public login() {
-    if (this.hasTokenExpired()) {
+    if (this.utilityService.hasTokenExpired()) {
       this.authorize();
     } else {
       this.router.navigateByUrl('/landing');
@@ -27,24 +28,11 @@ export class SpotifyService {
   }
 
   public authorize(): void {
-
-    let params = new HttpParams();
-    params = params.append('response_type', 'token');
-    params = params.append('client_id', environment.clientID);
-    params = params.append('scope', this.scope);
-    params = params.append('redirect_uri', this.redirect_uri);
-
-    const spotify_auth_url = AUTHORIZE_URL + '?' + params.toString();
-    this.document.location.href = spotify_auth_url;
+    this.utilityService.authorize();
   }
 
   public getCurrentUserProfile()  {
     return this.getQuery(CURRENT_USER_URL);
-  }
-
-  public hasTokenExpired(): boolean {
-    let expiry_date = Number(localStorage.getItem('expiry_date'));
-    return (new Date().getTime() / 1000) > Number(expiry_date ?? 0);
   }
 
   public getQuery(query: string) {
