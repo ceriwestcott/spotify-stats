@@ -11,6 +11,7 @@ import { CallBackComponent } from './components/call-back/call-back.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingTestComponentComponent } from './components/landing-test-component/landing-test-component.component';
+import { ProfileComponent } from './components/spotify-components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LandingTestComponentComponent } from './components/landing-test-compone
     CallBackComponent,
     LandingComponent,
     LandingTestComponentComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
