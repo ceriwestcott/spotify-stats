@@ -1,3 +1,4 @@
+import { UtilityService } from './../../services/utility.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,15 +8,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./call-back.component.scss'],
 })
 export class CallBackComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private utilityService: UtilityService
+  ) {}
 
   ngOnInit(): void {
     debugger;
-    if (localStorage.getItem('access_token')) {
+    if (
+      this.utilityService.hasTokenExpired() ||
+      !localStorage.getItem('access_token')
+    ) {
       this.route.fragment.subscribe((fragments) => {
         fragments?.split('&').map((fragment) => {
           let fragmentArray = fragment.split('=');
-          if (fragment[0] === 'expires_in') {
+          if (fragmentArray[0] === 'expires_in') {
             const expiry_date =
               Number(fragmentArray[1]) + new Date().getTime() / 1000;
 

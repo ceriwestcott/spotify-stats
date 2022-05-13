@@ -32,12 +32,12 @@ export class SpotifyService {
     this.utilityService.authorize();
   }
 
-  public getCurrentUserProfile()  {
+  public getCurrentUserProfile() {
     return this.getQuery(CURRENT_USER_URL);
   }
 
-  public getTop(filters: {filter:string, subFilter:string}) : Observable<any>{
-    const query = `/me/${filters.filter}?time_range=${filters.subFilter}`;
+  public getTop(category: string, time_frame: string): Observable<any> {
+    const query = `/me/top/${category}?time_range=${time_frame}&limit=50&offset=0`;
     return this.getQuery(query);
   }
 

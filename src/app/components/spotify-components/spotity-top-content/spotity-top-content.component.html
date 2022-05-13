@@ -1,1 +1,16 @@
-<p>spotity-top-content works!</p>
+<div
+  fxLayout="row"
+  style="font-size: 30px"
+  *ngFor="let item of data; let i = index"
+  class="hover pt-3"
+>
+  <div fxFlex="5" class="block-black pt-" fxLayoutAlign=" none" fxLayoutGap>
+    {{ i }}
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center ">
+    <div>
+      {{ item.artist.name }}
+    </div>
+    <p class="h3">{{ item.name }}</p>
+  </div>
+</div>

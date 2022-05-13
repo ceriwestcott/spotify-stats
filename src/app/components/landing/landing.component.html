@@ -1,3 +1,45 @@
-<div class="">
-    <app-spotity-top-container></app-spotity-top-container>
+<div class="container">
+  <div class="display-4" *ngIf="user?.display_name">
+    Loged in as: {{ user.display_name }}
+  </div>
+  <p><a class="display-1">TOP ARTISTS</a></p>
+
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="radio-group"
+    (change)="onRadioChange('artists', $event.value)"
+  >
+    <mat-radio-button
+      class="example-radio-button"
+      *ngFor="let element of time_frame"
+      [value]="element.period"
+    >
+      {{ element.display_name }}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <!-- <ul>
+    <li (click)="onClickSelection('ARTIST', 'short_term')"><a>4 WEEKS</a></li>
+    <li (click)="onClickSelection('ARTIST', 'medium_term')"><a>6 MONTHS</a></li>
+    <li (click)="onClickSelection('ARTIST', 'long_term')"><a>1 YEAR</a></li>
+  </ul> -->
+  <a class="display-1">TOP TRACKS</a>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="radio-group"
+    (change)="onRadioChange('tracks', $event.value)"
+  >
+    <mat-radio-button
+      class="example-radio-button"
+      *ngFor="let element of time_frame"
+      [value]="element.period"
+    >
+      {{ element.display_name }}
+    </mat-radio-button>
+  </mat-radio-group>
+  <hr />
+  <app-spotity-top-content
+    [type]="'tracks'"
+    [data]="filteredData"
+  ></app-spotity-top-content>
 </div>

@@ -14,7 +14,6 @@ import { LandingTestComponentComponent } from './components/landing-test-compone
 import { ProfileComponent } from './components/spotify-components/profile/profile.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SpotityTopContainerComponent } from './components/spotify-components/spotity-top-container/spotity-top-container.component';
 import { SpotityTopContentComponent } from './components/spotify-components/spotity-top-content/spotity-top-content.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -27,7 +26,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     LandingTestComponentComponent,
     ProfileComponent,
     NavBarComponent,
-    SpotityTopContainerComponent,
     SpotityTopContentComponent,
   ],
   imports: [
@@ -38,10 +36,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatAppModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule 
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -1,5 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpParams,
+  HttpRequest,
+} from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,20 +15,27 @@ import { SpotifyService } from '../services/spotify.service';
 import { UtilityService } from '../services/utility.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class SpotifyInterceptorService implements HttpInterceptor{
-
-  constructor(private spotifyService: SpotifyService,
-    private utilityService: UtilityService){}
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(this.utilityService.hasTokenExpired())
-      this.utilityService.hasTokenExpired();
+export class SpotifyInterceptorService implements HttpInterceptor {
+  constructor(
+    private spotifyService: SpotifyService,
+    private utilityService: UtilityService
+  ) {}
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    debugger;
+    if (this.utilityService.hasTokenExpired()) {
+      debugger;
+      this.utilityService.authorize();
+    }
     return next.handle(req);
   }
 
-  public hasTokenExpired () {
+  public hasTokenExpired() {
     let expiry_date = Number(localStorage.getItem('expiry_date'));
-    return (new Date().getTime() / 1000) > Number(expiry_date ?? 0);
+    return new Date().getTime() / 1000 > Number(expiry_date ?? 0);
   }
 }
